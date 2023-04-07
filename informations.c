@@ -23,10 +23,27 @@ int	getTaches(void){
 }
 
 void	recordElementsFactures(void){
-	char elementsFactures[100];
-	printf("ecriver : ");
-	scanf("%s", elementsFactures);
-	printf("----------- %s\n", elementsFactures);
+	char	**tabElem;
+	char	buff[500];
+	int		i = 0;
+	
+	tabElem = malloc(sizeof(char *) * MAX_BUFF_SIZE);
+	for (int i = 0; i < MAX_BUFF_SIZE; i++)
+		tabElem[i] = NULL;
+	while (1 && ++i){
+		printf("Entrez l'élément %d facturé (si tous les éléments on été enregistrés, tapez 'fin')\n", i);
+		printf("Elément %d : ", i);
+		if (! fgets(buff, MAX_BUFF_SIZE, stdin)){
+				printf("error fgets getTaches\n"); // utilise fgets pour lire une ligne entière
+				exit (1);
+			}
+			cleanFgets(buff);
+		if ((strcmp(buff, "fin") == 0))
+			break;
+		tabElem[i - 1] = strdup(buff);
+	}
+	for (int i = 0; tabElem[i]; i++)
+		printf("%s\n", tabElem[i]);
 }
 
 

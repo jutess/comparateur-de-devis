@@ -22,14 +22,14 @@ int	getTaches(void){
 	return (1);
 }
 
-void	recordElementsFactures(void){
-	char	**tabElem;
+void	recordElementsFactures(t_devis *devis){
+	char	**tabDesignationTaches;
 	char	buff[500];
 	int		i = 0;
 	
-	tabElem = malloc(sizeof(char *) * MAX_BUFF_SIZE);
+	tabDesignationTaches = malloc(sizeof(char *) * MAX_BUFF_SIZE);
 	for (int i = 0; i < MAX_BUFF_SIZE; i++)
-		tabElem[i] = NULL;
+		tabDesignationTaches[i] = NULL;
 	while (1 && ++i){
 		printf("Entrez l'élément %d facturé (si tous les éléments on été enregistrés, tapez 'fin')\n", i);
 		printf("Elément %d : ", i);
@@ -40,18 +40,51 @@ void	recordElementsFactures(void){
 			cleanFgets(buff);
 		if ((strcmp(buff, "fin") == 0))
 			break;
-		tabElem[i - 1] = strdup(buff);
+		tabDesignationTaches[i - 1] = strdup(buff);
 	}
-	for (int i = 0; tabElem[i]; i++)
-		printf("%s\n", tabElem[i]);
+	devis->nbElements = i - 1;
+	devis->tabDesignationTaches = tabDesignationTaches;
 }
 
+void	recordNbElementsFactures(t_devis *devis){
+	int	*tabNbElem;
 
-void	getInformations(void){
-	if (getTaches())
-		printf("le ficher existe\n"); // lancer fonction de récupération des éléments facturés
-	else{                               // le ficher n'existe pas	
-		printf("le ficher n'existe pas\n"); // lancer fonction pour enregibuffer toutes les éléments facturés
-		recordElementsFactures();
-	}	
+
+	tabNbElem = malloc(sizeof(int) * devis->nbElements);	// alloue la mémoire pour le tableau
+	for (int i = 0; i < devis->nbElements; i++){
+		printf("Entrez le nombre de l'élément %s\n", devis->tabDesignationTaches[i]);
+		printf("Nombre de l'élément %s : ", devis->tabDesignationTaches[i]);
+		if (! scanf("%d", &tabNbElem[i])){
+			printf("error scanf recordNbElementsFactures\n");
+			exit (1);
+		}
+	}
+	devis->nbTachesFactures = tabNbElem;
+}
+
+void	getInformations(t_devis *devis){
+	if (getTaches()) 						// vérifie si il existe un fichier avec les taches ou le creer
+		printf("le ficher existe\n"); 		// lancer fonction de récupération des éléments facturés
+	else{                               	// le ficher n'existe pas	
+		printf("le ficher n'existe pas\n");	// lancer fonction pour enregibuffer toutes les éléments facturés
+		recordElementsFactures(devis);
+		recordPriceElements(devis);
+		recordNbElementsFactures(devis);
+	}
+}
+
+//enregistre dans un tableau int* les prix des éléments facturés
+void	recordPriceElements(t_devis *devis){
+	int	*tabPriceTaches;
+
+	tabPriceTaches = malloc(sizeof(int) * devis->nbElements);	// alloue la mémoire pour le tableau
+	for (int i = 0; i < devis->nbElements; i++){
+		printf("Entrez le prix de l'élément %s\n", devis->tabDesignationTaches[i]);
+		printf("Prix de l'élément %s : ", devis->tabDesignationTaches[i]);
+		if (! scanf("%d", &tabPriceTaches[i])){
+			printf("error scanf recordPriceElements\n");
+			exit (1);
+		}
+	}
+	devis->tabPriceTaches = tabPriceTaches;
 }

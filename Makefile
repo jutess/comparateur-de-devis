@@ -6,7 +6,7 @@
 #    By: jtessier <jtessier@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:50:56 by jtessier          #+#    #+#              #
-#    Updated: 2023/04/07 15:07:37 by jtessier         ###   ########.fr        #
+#    Updated: 2023/04/07 16:05:26 by jtessier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ FLAGS		= -Wall -Werror -Wextra
 
 SRCS		=	main.c \
 				informations.c \
+				utils.c \
 
 OBJS		= $(SRCS:.c=.o)
 

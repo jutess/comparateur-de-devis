@@ -6,6 +6,7 @@
 #include <string.h>
 
 #define	MAX_BUFF_SIZE 1000
+#define	NB_DIFF_TACHES 200
 
 #define PUR "\033[1;35m\033[1m"
 #define YEL "\033[1;33m\033[1m"
@@ -17,11 +18,13 @@
 
 typedef struct	s_devis
 {
-    char	**tabDesignationTaches; //tableau avec les noms des taches
+    char	**tabTaches; //tableau avec les noms des taches
     int     *nbTachesFactures;      //  tableau avec nombre de fois ou chaque tache a été facturée
     int		*tabPriceTaches;        // tableau avec le prix de chaque tache
     int     nbElements;             // nombre de taches différentes
     int     nb_devis;               // nombre de devis à comparer
+    int     costDevis;
+    int     *FinalCostForEveryTaches;
     char    *name_artisan;
 }				t_devis;
 
@@ -30,7 +33,7 @@ void    cleanFgets(char *str);
 
 // informations.c
 void    recordElementsFactures(t_devis *devis, int nb_devis);
-void	recordInformationsForEveryDevis(t_devis *devis);
+void	recordDevisInform(t_devis *devis);
 void	recordPriceForEveryElement(t_devis *devis);
 void	recordNbElementsFactures(t_devis *devis);
 

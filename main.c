@@ -66,19 +66,11 @@ void	recordNbElementsFactures(t_devis *devis){
 }
 
 void	recordInformationsForEveryDevis(t_devis *devis){
-	int	nb_devis = devis->nb_devis;
-	int	*tabPriceTaches;
-	int	*tabNbElem;
-
-	for (int i = 0; i < nb_devis; i++){
-		tabNbElem = malloc(sizeof(int) * devis->nbElements);	
-		tabPriceTaches = malloc(sizeof(int) * devis->nbElements);	// alloue la mémoire pour le tableau
-			for (int i = 0; i < devis->nbElements; i++){
-				printf(PUR "Entrer les informations concernant le devis produit par %s\n" WHI, devis[i].name_artisan);
-				recordPriceForEveryElement(&devis[i]);
-				recordNbElementsFactures(&devis[i]);
-			}
-		}	
+	for (int i = 0; i < devis->nb_devis; i++){
+			printf(PUR "Entrer les informations concernant le devis produit par %s\n" WHI, devis[i].name_artisan);
+			recordPriceForEveryElement(&devis[i]);
+			recordNbElementsFactures(&devis[i]);
+	}	
 }
 
 int main(int ac, char **av, char **envp){

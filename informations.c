@@ -109,8 +109,9 @@ void	dispDevisInformations(t_devis *devis){
 	for (int i = 0; i < nb_devis; i++){
 		printf(PUR "\n----------------------------------------------------------------\n" WHI);
 		printf(RED "cout total du devis %s : %d\n" WHI, devis[i].name_artisan, devis[i].costDevis);
-		printf(PUR "----------------------------------------------------------------\n" WHI);RED
+		printf(PUR "----------------------------------------------------------------\n" WHI);
 	printf("\n");
+	}
 }
 
 

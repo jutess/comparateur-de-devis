@@ -13,26 +13,24 @@ void	dispDiffCostForEveryElement(t_devis *devis){
 			if (i_devis + 1 < devis->nb_devis){
 				//la tache est moins chere cjew le premoer artisan
 				if (devis[i_devis].tabPriceTaches[i] < devis[i_devis + 1].tabPriceTaches[i]){
-					printf(GRE "%s : %d€\n" WHI, devis[i_devis].name_artisan, devis[i_devis].tabPriceTaches[i]);
-					printf(RED "%s : %d€\n" WHI, devis[i_devis + 1].name_artisan, devis[i_devis + 1].tabPriceTaches[i]);
-					printf(RED "difference de prix : %d%%\n" WHI, (devis[i_devis + 1].tabPriceTaches[i] - devis[i_devis].tabPriceTaches[i]) * 100 / devis[i_devis + 1].tabPriceTaches[i]);
+					printf(GRE "%s : %.2f€\n" WHI, devis[i_devis].name_artisan, devis[i_devis].tabPriceTaches[i]);
+					printf(RED "%s : %.2f€\n" WHI, devis[i_devis + 1].name_artisan, devis[i_devis + 1].tabPriceTaches[i]);
+					printf(RED "difference de prix : %.2f%%\n" WHI, (devis[i_devis + 1].tabPriceTaches[i] - devis[i_devis].tabPriceTaches[i]) * 100 / devis[i_devis + 1].tabPriceTaches[i]);
 				}
 				// la tache est plus chere chez le premier artisan
 				else if (devis[i_devis].tabPriceTaches[i] > devis[i_devis + 1].tabPriceTaches[i]){
-					printf(GRE "%s : %d€\n" WHI, devis[i_devis].name_artisan, devis[i_devis].tabPriceTaches[i]);
-					printf(RED "%s : %d€\n" WHI, devis[i_devis + 1].name_artisan, devis[i_devis + 1].tabPriceTaches[i]);
-					printf(RED "difference de prix : %d%%\n" WHI, (devis[i_devis].tabPriceTaches[i] - devis[i_devis + 1].tabPriceTaches[i]) * 100 / devis[i_devis].tabPriceTaches[i]);
+					printf(RED "%s : %.2f€\n" WHI, devis[i_devis].name_artisan, devis[i_devis].tabPriceTaches[i]);
+					printf(GRE "%s : %.2f€\n" WHI, devis[i_devis + 1].name_artisan, devis[i_devis + 1].tabPriceTaches[i]);
+					printf(RED "difference de prix : %.2f%%\n" WHI, (devis[i_devis].tabPriceTaches[i] - devis[i_devis + 1].tabPriceTaches[i]) * 100 / devis[i_devis].tabPriceTaches[i]);
 				}
 				//la tache est au meme prix chez les deux artisans
 				else if (devis[i_devis].tabPriceTaches[i] == devis[i_devis + 1].tabPriceTaches[i]){
-					printf(GRE "%s : %d€\n" WHI, devis[i_devis].name_artisan, devis[i_devis].tabPriceTaches[i]);
-					printf(GRE "%s : %d€\n" WHI, devis[i_devis + 1].name_artisan, devis[i_devis + 1].tabPriceTaches[i]);
+					printf(GRE "%s : %.2f€\n" WHI, devis[i_devis].name_artisan, devis[i_devis].tabPriceTaches[i]);
+					printf(GRE "%s : %.2f€\n" WHI, devis[i_devis + 1].name_artisan, devis[i_devis + 1].tabPriceTaches[i]);
 					printf(GRE "difference de prix : 0%%\n" WHI);
 				}
 			}			
 		}
-		
-
 	}
 }
 

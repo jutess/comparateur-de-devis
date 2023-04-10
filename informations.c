@@ -36,12 +36,12 @@ void	recArtisansName(t_devis *devis){
 }
 
 void	recordPriceForEveryElement(t_devis *devis){
-	int	*tabPriceTaches;
+	float	*tabPriceTaches;
 
-	tabPriceTaches = malloc(sizeof(int) * devis->nbElements);	// alloue la mémoire pour le tableau
+	tabPriceTaches = malloc(sizeof(float) * devis->nbElements);	// alloue la mémoire pour le tableau
 	for (int i = 0; i < devis->nbElements; i++){
 		printf(GRE "prix pour une unité de %s : " WHI, devis->tabTaches[i]);
-		if (! scanf("%d", &tabPriceTaches[i])){
+		if (! scanf("%f", &tabPriceTaches[i])){
 			printf("error scanf recordPriceElements\n");
 			exit (1);
 		}
@@ -77,13 +77,13 @@ void	recordDevisInform(t_devis *devis){
 }
 
 void	recordAllcosts(t_devis *devis){
-	int *totalCostForEveryElement;
-	int	totalCost = 0;
+	float	*totalCostForEveryElement;
+	float	totalCost = 0;
 
 	for(int i = 0; i < devis->nb_devis; i++){
 		//calcul le cout total pour chacun des éléments
 		totalCost = 0;
-		totalCostForEveryElement = malloc(sizeof(int) * devis[i].nbElements);
+		totalCostForEveryElement = malloc(sizeof(float) * devis[i].nbElements);
 		for (int j = 0; j < devis[i].nbElements; j++){
 			totalCostForEveryElement[j] = devis[i].tabPriceTaches[j] * devis[i].nbTachesFactures[j];
 		}
@@ -99,15 +99,18 @@ void	recordAllcosts(t_devis *devis){
 void	dispDevisInformations(t_devis *devis){
 	int nb_devis = devis->nb_devis;
 	for (int i = 0; i < nb_devis; i++){
-		printf(RED "devis %s\n" WHI, devis[i].name_artisan);
+		printf(PUR "\n----------------------------------------------------------------\n" WHI);
+		printf(PUR "DEVIS %s\n" WHI, devis[i].name_artisan);
 		for (int j = 0; j < devis[i].nbElements; j++){
-			printf(GRE "%s : %d€\n" WHI, devis[i].tabTaches[j], devis[i].tabPriceTaches[j]);
+			printf(GRE "%s : %2.f€\n" WHI, devis[i].tabTaches[j], devis[i].tabPriceTaches[j]);
 			printf(GRE "nombre d'unités facturées : %d\n" WHI, devis[i].nbTachesFactures[j]);
 		}
 	}
 	for (int i = 0; i < nb_devis; i++){
+		printf(PUR "\n----------------------------------------------------------------\n" WHI);
 		printf(RED "cout total du devis %s : %d\n" WHI, devis[i].name_artisan, devis[i].costDevis);
-	}
+		printf(PUR "----------------------------------------------------------------\n" WHI);RED
+	printf("\n");
 }
 
 

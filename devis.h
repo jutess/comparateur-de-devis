@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+ #include <ctype.h>
+ 
 #define	MAX_BUFF_SIZE 1000
 #define	NB_DIFF_TACHES 200
 
@@ -18,13 +19,13 @@
 
 typedef struct	s_devis
 {
-    char	**tabTaches; //tableau avec les noms des taches
+    char    **tabTaches; //tableau avec les noms des taches
     int     *nbTachesFactures;      //  tableau avec nombre de fois ou chaque tache a été facturée
-    int		*tabPriceTaches;        // tableau avec le prix de chaque tache
+    float	*tabPriceTaches;        // tableau avec le prix de chaque tache
     int     nbElements;             // nombre de taches différentes
     int     nb_devis;               // nombre de devis à comparer
     int     costDevis;
-    int     *FinalCostForEveryTaches;
+    float    *FinalCostForEveryTaches;
     char    *name_artisan;
 }				t_devis;
 

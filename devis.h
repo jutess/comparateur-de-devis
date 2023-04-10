@@ -32,10 +32,22 @@ typedef struct	s_devis
 void    cleanFgets(char *str);
 
 // informations.c
+// enregistre la liste des taches facturee
 void    recordElementsFactures(t_devis *devis, int nb_devis);
-void	recordDevisInform(t_devis *devis);
+//retourne le nombre de devis que l'utilisateur souhaite comparer
+int	retNbDevisToComp(void);
+// enregistre le nom des artisans
+void	recArtisansName(t_devis *devis);
+// enregistre le prix unitaire de chaque element
 void	recordPriceForEveryElement(t_devis *devis);
+//enregistre le nombre d'elements factures
 void	recordNbElementsFactures(t_devis *devis);
+// enregistre les informations détaillées du devis
+void	recordDevisInform(t_devis *devis);
+// enregistre le cout total de chaque element et le cout total du devis
+void	recordAllcosts(t_devis *devis);
+	// affiche chaque devis avec le prix unitaire de chaque élément et le nombre d'éléments facturés
+void	dispDevisInformations(t_devis *devis);
 
 
 
